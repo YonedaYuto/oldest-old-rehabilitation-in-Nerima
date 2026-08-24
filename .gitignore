@@ -1,0 +1,57 @@
+# ===========================================================================
+# Individual patient data and anything derived from it — NEVER commit
+# ===========================================================================
+data/
+*.rds
+*.RDS
+*.rda
+*.RData
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.sav
+*.dta
+
+# ===========================================================================
+# Generated output (figures, tables, reports)
+# ===========================================================================
+figures/
+output/
+*.png
+*.jpg
+*.jpeg
+*.tiff
+*.pdf
+*.docx
+*.pptx
+
+# ===========================================================================
+# R / RStudio
+# ===========================================================================
+.Rproj.user/
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj
+.Renviron
+renv/library/
+renv/local/
+renv/staging/
+renv/python/
+renv/sandbox/
+
+# ===========================================================================
+# OS
+# ===========================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================================================================
+# Exceptions: files that must be tracked despite the rules above
+# ===========================================================================
+!.gitignore
+!.gitattributes
+!CITATION.cff

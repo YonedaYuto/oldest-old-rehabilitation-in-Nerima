@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+title: "Analysis code for a multivariable logistic regression of good functional outcome in convalescent rehabilitation inpatients (RCS + smcfcs)"
+abstract: >-
+  R code implementing preprocessing, substantive-model-compatible multiple
+  imputation (smcfcs), restricted cubic spline modelling, separation handling,
+  variable and interaction selection, performance assessment and
+  internal-external cross-validation for a multivariable logistic regression of
+  good functional outcome in convalescent rehabilitation inpatients. No
+  individual patient data are included.
+type: software
+authors:
+  - family-names: Yoneda
+    given-names: Yuto
+license: MIT
+version: 1.0.0
+date-released: "2026-08-24"
+repository-code: "https://github.com/USERNAME/REPOSITORY"
+keywords:
+  - logistic regression
+  - multiple imputation
+  - smcfcs
+  - restricted cubic splines
+  - internal-external cross-validation
+  - rehabilitation
+  - functional independence measure
