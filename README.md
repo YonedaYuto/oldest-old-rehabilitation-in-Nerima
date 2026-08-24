@@ -1,4 +1,4 @@
-# Analysis code — BNB_small multivariable logistic regression
+# Analysis code — multivariable logistic regression
 
 R code for a multivariable logistic regression analysis of good functional
 outcome in convalescent rehabilitation inpatients, using restricted cubic
