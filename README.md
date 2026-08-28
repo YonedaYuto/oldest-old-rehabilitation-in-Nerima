@@ -100,6 +100,7 @@ overwrite it.
 | `18_show_models.R` | Print the currently stored main-effect and final models |
 | `19_external_validation_iecv.R` | Internal–external cross-validation |
 | `20_fig2_fig3_descriptive.R` | Main-text Figures 2 and 3 (descriptive) |
+| `21_welch_discharge_fim_total.R` | t-test for comparison with another study |
 
 `15_reporting_supplements.R` and `16_table2_model_specification.R` are the
 earlier revisions of the two `-1` scripts above and are kept only for
