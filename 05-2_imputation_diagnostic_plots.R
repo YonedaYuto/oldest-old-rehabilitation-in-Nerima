@@ -21,7 +21,7 @@ LINE_W    <- 0.5
 
 SUBSETS <- list(severe  = c("severe_A",  "severe_B"),
                 elderly = c("elderly_A", "elderly_B"))
-SUBSET_TITLE <- c(severe = "Severe subset", elderly = "Elderly subset")
+SUBSET_TITLE <- c(severe = "Severe subset", elderly = "Oldest-old subset")
 
 imp_index <- readRDS(file.path(OUT_DIR, "bnb_imp_index.rds"))
 
@@ -167,7 +167,7 @@ for (sub in names(SUBSETS)) {
 
   combine_and_save(sub, pipes, build_dist_plot,
                    sprintf("fig_imp_distributions_%s.png", sub),
-                   subtitle = "Observed vs imputed (post-truncation), continuous MAR variables",
+                   subtitle = "Observed vs imputed (post-truncation)",
                    ncol_facet = 2L, per_facet = 4.4, panel_unit_h = 3.4)
 }
 

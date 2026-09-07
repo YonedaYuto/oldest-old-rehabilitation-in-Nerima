@@ -4,9 +4,11 @@ library(here)
 OUT_DIR <- here::here("data")
 if (!dir.exists(OUT_DIR)) dir.create(OUT_DIR, recursive = TRUE)
 
-THR_ELDER <- 90  # age defining the oldest-old group, as everywhere else
+THR_ELDER <- 90
 
-# ---- data -------------------------------------------------------------------
+REPORTED <- list(elder_mean = 73.2, elder_sd = 32.5,
+                 young_mean = 99.8, young_sd = 22.8)
+
 if (!exists("BNB_small")) stop("BNB_small not found. Load it first.")
 dat <- as.data.table(BNB_small)
 
@@ -27,14 +29,15 @@ n_drop <- dat[is.na(FIM_total_out) | is.na(age), .N]
 if (n_drop > 0) message(sprintf("Dropped %d record(s) with a missing age or FIM total.", n_drop))
 d <- dat[!is.na(FIM_total_out) & !is.na(age)]
 
-# ---- 21.1  Welch's t test ---------------------------------------------------
 tt <- t.test(FIM_total_out ~ age_group, data = d, var.equal = FALSE)
 
 res <- data.table(
   group      = c("elder (age >= 90)", "young (age < 90)"),
   n          = d[, .N, by = age_group][order(age_group), N],
   mean       = round(as.numeric(tt$estimate), 1),
-  sd         = round(d[, sd(FIM_total_out), by = age_group][order(age_group), V1], 1)
+  sd         = round(d[, sd(FIM_total_out), by = age_group][order(age_group), V1], 1),
+  reported_mean = c(REPORTED$elder_mean, REPORTED$young_mean),
+  reported_sd   = c(REPORTED$elder_sd,   REPORTED$young_sd)
 )
 res[, `:=`(mean_difference = round(diff(rev(as.numeric(tt$estimate))), 2),
            ci_low  = round(tt$conf.int[1], 2),
@@ -46,3 +49,9 @@ res[, `:=`(mean_difference = round(diff(rev(as.numeric(tt$estimate))), 2),
 
 print(res)
 fwrite(res, file.path(OUT_DIR, "table_welch_discharge_fim_total.csv"))
+
+ok <- all(abs(res$mean - res$reported_mean) < 0.05 &
+          abs(res$sd   - res$reported_sd)   < 0.05)
+message(sprintf("Reconciliation with the printed means and SDs: %s",
+                if (ok) "OK" else "*** MISMATCH - correct the manuscript ***"))
+message("Written: ", file.path(OUT_DIR, "table_welch_discharge_fim_total.csv"))

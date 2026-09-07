@@ -242,13 +242,13 @@ plot_curve <- function(info, pipe_disp) {
     scale_fill_manual(values = STRATA_PAL, guide = "none") +
     scale_y_log10() +
     labs(title = sprintf("%s  -  Interaction: %s", pipe_disp, info$disp),
-         subtitle = sprintf("Adjusted OR of %s by strata of %s (ref = %s median; OR=1). Band = %d%% CI (Rubin, delta).",
+         subtitle = sprintf("Adjusted OR of %s by strata of %s (ref = %s median; OR=1). Band = %d%% CI.",
                             info$x_lab, relabel_vars(info$mod), info$x_lab, round(100 * CI_LEVEL)),
          x = sprintf("%s (original scale)", info$x_lab),
          y = "Adjusted odds ratio (log scale)") +
-    theme_bw(base_size = 10) +
-    theme(plot.title = element_text(size = 11, face = "bold"),
-          plot.subtitle = element_text(size = 8, colour = "grey30"),
+    theme_bw(base_size = 18) +
+    theme(plot.title = element_text(size = 18, face = "bold"),
+          plot.subtitle = element_text(size = 12, colour = "grey30"),
           legend.position = "top", panel.grid.minor = element_blank())
 }
 
@@ -265,9 +265,9 @@ plot_points <- function(info, pipe_disp) {
          subtitle = sprintf("Adjusted OR of %s (vs. %s) by strata of %s; OR=1. Bars = %d%% CI (Rubin, delta).",
                             info$x_lab, info$ref_lab, relabel_vars(info$mod), round(100 * CI_LEVEL)),
          x = info$x_lab, y = "Adjusted odds ratio (log scale)") +
-    theme_bw(base_size = 10) +
-    theme(plot.title = element_text(size = 11, face = "bold"),
-          plot.subtitle = element_text(size = 8, colour = "grey30"),
+    theme_bw(base_size = 30) +
+    theme(plot.title = element_text(size = 32, face = "bold"),
+          plot.subtitle = element_text(size = 28, colour = "grey30"),
           legend.position = "top", panel.grid.minor = element_blank())
 }
 
@@ -314,7 +314,7 @@ process_pipeline <- function(nm) {
          else                       plot_points(info, relabel_pipeline(nm))
     fn <- file.path(FIG_DIR, sprintf("fig4_interaction_%s_%s.png", nm, sanitize(key)))
     h  <- if (info$type == "curve") 4.2 else max(3.6, 0.0 + 4.0)
-    ggsave(fn, p, width = 7.6, height = h, dpi = 150)
+    ggsave(fn, p, width = 7.6, height = h, dpi = 400)
     message(sprintf("  [%s] %s を保存: %s", nm, info$disp, basename(fn)))
     d <- copy(info$data); d[, `:=`(pipeline = nm, interaction = info$disp, type = info$type)]
     collected[[key]] <- d

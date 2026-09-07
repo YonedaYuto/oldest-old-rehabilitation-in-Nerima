@@ -22,7 +22,7 @@ if (!exists("centered_pipelines"))
 if (!exists("selected_meta"))
   selected_meta <- readRDS(file.path(OUT_DIR, "bnb_selected_meta.rds"))
 
-SYS_LABELS <- c(A = "System A (worst-value)", B = "System B (missing-category)")
+SYS_LABELS <- c(A = "worst-value", B = "missing-category")
 sys_of  <- function(nm) sub(".*_", "", nm)
 subset_of <- function(nm) sub("_.*", "", nm)
 
@@ -106,7 +106,7 @@ build_group_canvas(
 
 build_group_canvas(
   members      = c("elderly_A", "elderly_B"),
-  subset_title = "Elderly subset (age >= 90) — Correlation matrices",
+  subset_title = "Oldest-old subset (age >= 90) — Correlation matrices",
   outfile      = "fig1_corr_elderly_combined.png"
 )
 

@@ -1,4 +1,6 @@
-# Analysis code — multivariable logistic regression
+# Analysis code — BNB_small multivariable logistic regression
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22097248.svg)](https://doi.org/10.5281/zenodo.22097248)
 
 R code for a multivariable logistic regression analysis of good functional
 outcome in convalescent rehabilitation inpatients, using restricted cubic
@@ -19,13 +21,13 @@ imputation (`smcfcs`) for missing covariates.
 ```
 .
 ├── 00_labels.R            English display labels, sourced by every later script
-├── 01_preprocess.R … 20_fig2_fig3_descriptive.R
+├── 01_preprocess.R … 21_welch_discharge_fim_total.R
 ├── LICENSE                MIT — applies to the code
 ├── LICENSE-docs.txt       CC BY 4.0 — applies to documentation, figures, tables
 ├── CITATION.cff
 └── (created at run time, not tracked)
     ├── data/              inputs and intermediate .rds / .csv objects
-    └── figures/           generated .png / .pdf
+    └── figures/           generated .png / .pdf / .tiff
 ```
 
 Scripts locate the project root with the **`here`** package, so `00_labels.R`
@@ -95,16 +97,28 @@ overwrite it.
 | `13_table1_4.R` | Table 1 — baseline characteristics |
 | `14_excluded_vs_included.R` | Analysed cohort vs patients who died or were transferred |
 | `15_reporting_supplements-1.R` | Reporting quantities: minimum sample size, crude ORs, absolute risks |
+| `15-1_table_s3_crude_multilevel.R` | Crude odds ratios recomputed so that a k-level categorical predictor contributes all k−1 contrasts |
 | `16_table2_model_specification-1.R` | Table 2 — full model specification for the four pipelines |
 | `17_session_info_license.R` | `sessionInfo`, package versions, licence files |
 | `18_show_models.R` | Print the currently stored main-effect and final models |
 | `19_external_validation_iecv.R` | Internal–external cross-validation |
-| `20_fig2_fig3_descriptive.R` | Main-text Figures 2 and 3 (descriptive) |
-| `21_welch_discharge_fim_total.R` | t-test for comparison with another study |
+| `20_fig2_fig3_descriptive.R` | Descriptive figures: outcome by age and disease class, and the subset forest plot |
+| `21_welch_discharge_fim_total.R` | Welch two-sample *t* test of the total discharge FIM, oldest-old versus younger patients |
 
 `15_reporting_supplements.R` and `16_table2_model_specification.R` are the
 earlier revisions of the two `-1` scripts above and are kept only for
 provenance; use the `-1` versions.
+
+`15-1_table_s3_crude_multilevel.R` replaces the crude odds-ratio table produced
+by section 15.2 of `15_reporting_supplements-1.R`, which reported only the first
+contrast of each categorical predictor. It is a stand-alone script: it neither
+modifies nor has to be run together with the parent script, and it leaves the
+other outputs of section 15 untouched.
+
+Output file names follow each script's own numbering, which is not the figure
+numbering of the manuscript: `20_fig2_fig3_descriptive.R` writes
+`fig2_outcome_by_age_disease` and `fig3_subset_forest`, which appear in the
+manuscript as Figures 1 and 2.
 
 ## Note on comments
 
@@ -120,8 +134,10 @@ documentation.
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). Once the repository is archived on Zenodo,
-cite the version DOI shown on the Zenodo record.
+See [`CITATION.cff`](CITATION.cff). The repository is archived on Zenodo under
+the concept DOI [10.5281/zenodo.22097248](https://doi.org/10.5281/zenodo.22097248),
+which always resolves to the newest release. When citing the code, use the
+**version** DOI shown on the Zenodo record for the release you actually used.
 
 ---
 
@@ -139,6 +155,11 @@ substantive-model-compatible な多重代入（`smcfcs`）で扱っています�
 依存する再描画・手動キュレーション用で、親ステップを上書きしません。`here`
 パッケージでプロジェクトルートを解決するため、`00_labels.R` はリポジトリ直下に
 置いたままにしてください。
+
+`15-1_table_s3_crude_multilevel.R` は、`15_reporting_supplements-1.R` の 15.2 節が
+各カテゴリ変数の第 1 対比しか出力しなかった点を修正し、k 水準の変数について k−1
+対比すべてを報告する粗オッズ比表を出力します。親スクリプトを書き換えるものでは
+なく、単独で実行できます。
 
 コメントは公開前に全削除しています。上記のステップ表がドキュメントの役割を
 果たします。

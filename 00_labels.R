@@ -4,8 +4,8 @@ VAR_LABELS <- c(
   cFIM_in        = "cFIM",
   class          = "Disease",
   GP_better_in   = "Grip Strength",
-  his_car        = "History of Cancer",
-  his_CNS        = "History of diseases of CNS",
+  his_car        = "Cancer history",
+  his_CNS        = "CNS disease history",
   JCS_in         = "JCS",
   JCS_bin        = "JCS",
   mFIM_in        = "mFIM",
@@ -34,10 +34,10 @@ LEVEL_LABELS <- c(
 )
 
 PIPE_LABELS <- c(
-  severe_A  = "Severe / System A (worst-value)",
-  severe_B  = "Severe / System B (missing-category)",
-  elderly_A = "Elderly / System A (worst-value)",
-  elderly_B = "Elderly / System B (missing-category)"
+  severe_A  = "Severe / worst-value",
+  severe_B  = "Severe / missing-category",
+  elderly_A = "Oldest-old / worst-value",
+  elderly_B = "Oldest-old / missing-category"
 )
 
 relabel_levels <- function(var, lv) {

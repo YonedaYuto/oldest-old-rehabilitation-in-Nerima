@@ -196,22 +196,22 @@ process_pipeline <- function(nm) {
     geom_line(aes(y = OR), colour = CURVE_COL, linewidth = 0.8) +
     facet_wrap(~ variable_lab, scales = "free") +
     scale_y_log10(labels = plain_num) +
-    labs(title = sprintf("%s  -  Provisional model: adjusted OR curves", relabel_pipeline(nm)),
+    labs(title = sprintf("%s  -  adjusted OR curves", relabel_pipeline(nm)),
          subtitle = paste0("OR vs. continuous predictor (reference = median, OR=1). ",
-                           "Band = ", round(100 * CI_LEVEL), "% CI (Rubin-pooled, delta method). ",
-                           "Long-dash = median; dotted = RCS knots."),
+                           "Band = ", round(100 * CI_LEVEL), "% CI. ",
+                           "Long-dash = median."),
          x = "Predictor value (original scale)",
          y = "Adjusted odds ratio (log scale)") +
-    theme_bw(base_size = 10) +
-    theme(plot.title = element_text(size = 11, face = "bold"),
-          plot.subtitle = element_text(size = 8, colour = "grey30"),
+    theme_bw(base_size = 20) +
+    theme(plot.title = element_text(size = 20, face = "bold"),
+          plot.subtitle = element_text(size = 18, colour = "grey30"),
           panel.grid.minor = element_blank())
 
   n_facet <- length(curves)
   ncol_f  <- min(3L, n_facet)
   nrow_f  <- ceiling(n_facet / ncol_f)
   ggsave(file.path(FIG_DIR, sprintf("fig4_orcurve_provisional_%s.png", nm)),
-         p, width = 4.4 * ncol_f, height = 3.5 * nrow_f + 0.8, dpi = 150)
+         p, width = 4.4 * ncol_f, height = 3.5 * nrow_f + 0.8, dpi = 400)
   message(sprintf("  [%s] OR カーブを保存: fig4_orcurve_provisional_%s.png（%d 変数）",
                   nm, nm, n_facet))
 

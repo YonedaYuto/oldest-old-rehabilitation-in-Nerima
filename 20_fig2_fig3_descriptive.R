@@ -177,7 +177,7 @@ contrast <- function(d, flag, lab, stratum = "All") {
 }
 
 SUBSETS <- list(
-  list(flag = "elderly",     lab = sprintf("Elderly (age >= %d)", THR_ELDER)),
+  list(flag = "elderly",     lab = sprintf("Oldest-old (age >= %d)", THR_ELDER)),
   list(flag = "severe",      lab = sprintf("Severe (admission motor FIM <= %d)", THR_SEVERE))
 )
 
@@ -269,11 +269,11 @@ text_panel <- function(value_col, header, hjust = 0.5, x_at = 0, x_lim = c(-1, 1
   plain <- fig3[is_overall  == FALSE]
   ggplot() +
     geom_text(data = bold,  aes(x = x_at, y = ypos, label = .data[[value_col]]),
-              hjust = hjust, size = 2.95, colour = COL_TEXT, fontface = "bold") +
+              hjust = hjust, size = 4.4, colour = COL_TEXT, fontface = "bold") +
     geom_text(data = plain, aes(x = x_at, y = ypos, label = .data[[value_col]]),
-              hjust = hjust, size = 2.95, colour = COL_TEXT, fontface = "plain") +
+              hjust = hjust, size = 4.4, colour = COL_TEXT, fontface = "plain") +
     annotate("text", x = x_at, y = HDR_Y, label = header, hjust = hjust,
-             size = 2.95, fontface = "bold", colour = COL_TEXT) +
+             size = 4.4, fontface = "bold", colour = COL_TEXT) +
     scale_x_continuous(limits = x_lim, expand = c(0, 0), breaks = x_at, labels = " ") +
     scale_y_continuous(limits = Y_LIM, expand = c(0, 0)) +
     labs(x = X_TITLE, y = NULL) +
@@ -289,8 +289,8 @@ if (requireNamespace("patchwork", quietly = TRUE)) {
                               nrow = 1, widths = c(0.30, 0.12, 0.36, 0.22)) +
     patchwork::plot_annotation(
       title = FIG3_TITLE, subtitle = FIG3_SUB,
-      theme = theme(plot.title = element_text(face = "bold", size = 12),
-                    plot.subtitle = element_text(size = 10, colour = COL_TEXT),
+      theme = theme(plot.title = element_text(face = "bold", size = 18),
+                    plot.subtitle = element_text(size = 15, colour = COL_TEXT),
                     plot.title.position = "plot"))
   fig3_w <- 11.0
 } else {
@@ -312,6 +312,10 @@ ggsave(file.path(FIG_DIR, "fig3_subset_forest.png"), p3,
        width = fig3_w, height = 5.8, dpi = 400)
 ggsave(file.path(FIG_DIR, "fig3_subset_forest.pdf"), p3,
        width = fig3_w, height = 5.8)
+ggsave(file.path(FIG_DIR, "fig3_subset_forest.tiff"), p3,
+       width = fig3_w, height = 5.8,
+       dpi = 600,
+       compression = "lzw")
 message("Saved figures/fig3_subset_forest.png and .pdf")
 
 message("\n==== Section 20 complete ====")

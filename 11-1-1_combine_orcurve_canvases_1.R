@@ -119,7 +119,7 @@ combine_group <- function(grp) {
   height <- max(nrow_each) * per_panel_h + 1.4
 
   outfile <- file.path(FIG_DIR, grp$out)
-  ggsave(outfile, combo, width = width, height = height, dpi = 150, limitsize = FALSE)
+  ggsave(outfile, combo, width = width, height = height, dpi = 400, limitsize = FALSE)
   message(sprintf("  → 保存: %s（%.1f x %.1f in, パネル %d 列）",
                   outfile, width, height, length(built)))
   invisible(outfile)

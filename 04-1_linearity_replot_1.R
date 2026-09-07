@@ -28,7 +28,7 @@ SUBSETS <- list(
   severe  = c("severe_A",  "severe_B"),
   elderly = c("elderly_A", "elderly_B")
 )
-SUBSET_TITLE <- c(severe = "Severe subset", elderly = "Elderly subset")
+SUBSET_TITLE <- c(severe = "Severe subset", elderly = "Oldest-old subset")
 
 if (!exists("centered_pipelines"))
   centered_pipelines <- readRDS(file.path(OUT_DIR, "bnb_pipelines_centered.rds"))
@@ -132,7 +132,7 @@ build_pipeline_plot <- function(nm, dt, meta) {
 
   ggplot() +
     geom_vline(data = knot_all, aes(xintercept = knot_x),
-               linetype = "dotted", colour = "grey70", linewidth = 0.35) +
+               linetype = "dotted", colour = "grey25", linewidth = 0.35) +
     geom_point(data = emp_all, aes(x = x, y = logit, size = n),
                colour = "grey35", alpha = 0.7) +
     geom_line(data = pred_all,

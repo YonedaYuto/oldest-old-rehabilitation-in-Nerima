@@ -12,11 +12,15 @@ type: software
 authors:
   - family-names: Yoneda
     given-names: Yuto
-    orcid: 0009-0006-0338-5673
+    orcid: "https://orcid.org/0009-0006-0338-5673"
 license: MIT
-version: 1.0.0
-date-released: "2026-08-24"
+version: 1.2.0
+date-released: "2026-09-07"
 repository-code: "https://github.com/YonedaYuto/oldest-old-rehabilitation-in-Nerima"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22097248
+    description: "Concept DOI, always resolving to the latest archived release"
 keywords:
   - logistic regression
   - multiple imputation
